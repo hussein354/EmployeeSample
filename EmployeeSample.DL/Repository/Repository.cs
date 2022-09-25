@@ -44,9 +44,7 @@ namespace EmployeeSample.DL.Repos
             {
                 throw new ArgumentNullException("entity");
             }
-            if(entity is {IsDeleted=true } )
             entities.Add(entity);
-
             if (context.SaveChanges() > 0) return true;
             return false;
         }

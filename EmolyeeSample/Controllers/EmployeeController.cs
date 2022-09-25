@@ -32,31 +32,31 @@ namespace EmolyeeSample.Controllers
 
         [HttpPost]
         [Route("AddEmployee")]
-        public bool AddEmployee(InsertEmployeeDto insertEmployeeDto)
+        public IActionResult AddEmployee(InsertEmployeeDto insertEmployeeDto)
         {
             Employee employee = new()
             {
                 Name = insertEmployeeDto.Name,
                 DepartmentId =  insertEmployeeDto.DepartmentId
             };
-            return _employeeService.Add(employee);
+            return Ok(_employeeService.Add(employee) ) ;
         }
         [HttpPost]
         [Route("UpdateEmployee")]
-        public bool UpdateEmployee(UpdateEmployeeDto employeeDto)
+        public IActionResult UpdateEmployee(UpdateEmployeeDto employeeDto)
         {
             Employee employee = new()
             {
                 Id = employeeDto.Id,
                 Name = employeeDto.Name,
             };
-            return _employeeService.Update(employee);
+            return Ok( _employeeService.Update(employee) );
         }
         [HttpDelete]
         [Route("DeleteEmployee")]
-        public bool DeleteEmployee(int employeeId)
+        public IActionResult DeleteEmployee(int employeeId)
         {
-            return _employeeService.Delete(employeeId);
+            return  Ok(_employeeService.Delete(employeeId));
         }
     }
 }
